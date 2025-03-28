@@ -9,7 +9,7 @@ public class TokenService (IConfiguration config) : ITokenService
 {
     public string CreateToken(AppUser user)
     {
-        var tokenkey=config["TokenKey"]?? throw new Exception ("Cannot access tokenyey from appsetting");  //It could be null 
+        var tokenkey=config["TokenKey"]?? throw new Exception ("Cannot access tokenkey from appsetting");  //It could be null 
         if (tokenkey.Length < 64) throw new Exception("Your TokenKey needs to be longer");
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenkey));
         var claims=new List<Claim>
