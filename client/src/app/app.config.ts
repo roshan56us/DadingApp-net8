@@ -8,7 +8,11 @@ import { errorInterceptor } from './_interceptors/error.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+<<<<<<< HEAD
     provideRouter(routes),
+=======
+     provideRouter(routes),
+>>>>>>> fa1e024a1cce963781b3befda44bdbbc919c76d6
     provideHttpClient(withInterceptors([errorInterceptor])),
     provideAnimations(),
     provideToastr({
