@@ -14,7 +14,7 @@ namespace API.Helpers
         public AutoMapperProfiles()
         {
             CreateMap<AppUser, MemberDto>()
-            .ForMember(d => d.Age, o => o.MapFrom (s => s.DateOfBirth.CalculateAge()))
+            .ForMember(d => d.Age, o => o.MapFrom (s => s.DateOfBirth.CalculateAge()))   // The below 2 lines are added to map the field manually
             .ForMember(d => d.PhotoURL, o =>
             o.MapFrom(s => s.Photos.FirstOrDefault(x => x.IsMain)!.Url));  //Since Photo URL is not matched so added manually to map. will return null if not found.
             CreateMap<Photo, PhotoDto>();

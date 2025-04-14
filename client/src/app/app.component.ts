@@ -22,7 +22,7 @@ this.setCurrentUser();
   }
 
   setCurrentUser() {
-    const userString = localStorage.getItem('user');
+    const userString = localStorage.getItem('users');
     if (!userString) return;
     const user = JSON.parse(userString);
     this.accountService.currentUser.set(user);
