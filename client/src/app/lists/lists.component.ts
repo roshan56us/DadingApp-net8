@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MemberCardComponent } from '../members/member-card/member-card.component';
 
 @Component({
   selector: 'app-lists',

@@ -26,6 +26,7 @@ namespace API.Services
             return await context.Users
             .Where(x => x.UserName == username)
             .ProjectTo<MemberDto>(mapper.ConfigurationProvider)
+
             .SingleOrDefaultAsync();
         }
 
@@ -47,6 +48,7 @@ namespace API.Services
             return await context.Users
             .Include(x => x.Photos)
             .ToListAsync();
+            
         }
 
         public async Task<bool> SaveAllSync()
