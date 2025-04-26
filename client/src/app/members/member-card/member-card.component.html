@@ -1,7 +1,7 @@
 
 <div class="card mb-4">
     <div class="card-img-wrapper">
-        <img src="{{member().photoURL}}" alt="{{member().knownAs}}" class="card-img-top">
+        <img src="{{member().photoURL || './public/user.png'}}" alt="{{member().knownAs}}" class="card-img-top">
 
         <ul class="list-inline member-icons animated text-center">
             <li class="list-inline-item">
