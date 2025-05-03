@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using System.Security.Claims;
 using System.Security.Cryptography.X509Certificates;
 using API.Data;
 using API.DTO;
@@ -11,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 namespace API.Controllers;
  
  [Authorize]
-public class UsersController(IUserRepository userRepository) : BaseApiController
+public class UsersController(IUserRepository userRepository, IMapper mapper) : BaseApiController
 {
    // [AllowAnonymous]
     [HttpGet]
@@ -42,5 +43,18 @@ public class UsersController(IUserRepository userRepository) : BaseApiController
     //     return user; // can return BadRequest or can return NotFound
         
     // }
+
+    [HttpPut]
+    public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
+    {
+        var username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (username==null) return BadRequest("No username found in the token");
+        var user= await userRepository.GetAUserByUsernameAsync(username);
+        if (user==null) return BadRequest("Couldn't find the user");
+        mapper.Map(memberUpdateDto,user);
+        if (await userRepository.SaveAllSync()) return NoContent();
+        return BadRequest("Failed to update the user");
+    }
+
     
 }

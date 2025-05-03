@@ -18,6 +18,8 @@ namespace API.Helpers
             .ForMember(d => d.PhotoURL, o =>
             o.MapFrom(s => s.Photos.FirstOrDefault(x => x.IsMain)!.Url));  //Since Photo URL is not matched so added manually to map. will return null if not found.
             CreateMap<Photo, PhotoDto>();
+            CreateMap<MemberUpdateDto,AppUser>();
+
 
 
         }

@@ -1,6 +1,7 @@
 import { Photo } from "./photo"
 
 export interface Member {
+    map: any
     id: number
     userName: string
     age: number
